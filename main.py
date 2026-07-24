@@ -1,7 +1,8 @@
 import os
 import time
 from ascii import menu_ascii, criar_personagem_ascii, titulo_ascii
-import hunter
+from hunter import hunter_class
+from functions import show_atributes
 
 def intro():
     os.system("cls")
@@ -28,9 +29,9 @@ def criar_personagem():
     print("[2] Soldado com Espada")
     print("[3] Estudioso com Cajado")
     print("[4] Caçador com Lança")
-    origem = int(input())
+    resposta = int(input())
     
-    hunter_obj = hunter.hunter_class(nome, idade, origem)
+    hunter_obj = hunter_class(nome, idade, resposta)
     print()
 
     print("==Personagem criado==")
@@ -38,7 +39,7 @@ def criar_personagem():
     os.system("cls")
     return hunter_obj
 
-def main():
+def main(personagem: hunter_class):
         while True:
             print(menu_ascii)
             
@@ -51,7 +52,12 @@ def main():
             [7]Descansar
             [8]Enfrentar Chefe
             [9]Encerrar jogo""")
-            int(input())
+            r = int(input())
+
+            match r:
+                case 2: 
+                    show_atributes(personagem)
+
 
     
 
@@ -59,4 +65,4 @@ def main():
 
 intro()
 personagem = criar_personagem()
-main()
+main(personagem)

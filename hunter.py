@@ -1,15 +1,15 @@
 import weapon
 
 class hunter_class:
-    def __init__(self, nome, idade, origem):
+    def __init__(self, nome, idade, resposta):
         self.nome = nome
         self.idade = idade
         self.arma = None
-        self.origem = origem
+        self.origem = None
         self.qtd_moedas = 0
         self.atributos = {}
 
-        match origem:
+        match resposta:
             case (1):
                 self.atributos = {"HP": 7 , 'STR': 7, 'DEF': 6, 'AGL': 5, 'INT': 5}
                 self.qtd_moedas = (10)
