@@ -1,8 +1,10 @@
 import os
 import time
 from ascii import menu_ascii, criar_personagem_ascii, titulo_ascii
-from hunter import hunter_class
-from functions import show_atributes
+from classes.hunter_class import hunter
+from classes.local_class import local
+from data.local_data import rua_abandonada
+from functions import show_atributes, explore, show_inventory, shop
 
 def intro():
     os.system("cls")
@@ -31,7 +33,7 @@ def criar_personagem():
     print("[4] Caçador com Lança")
     resposta = int(input())
     
-    hunter_obj = hunter_class(nome, idade, resposta)
+    hunter_obj = hunter(nome, idade, resposta)
     print()
 
     print("==Personagem criado==")
@@ -39,7 +41,9 @@ def criar_personagem():
     os.system("cls")
     return hunter_obj
 
-def main(personagem: hunter_class):
+def main(personagem: hunter, local: local):
+        
+        
         while True:
             print(menu_ascii)
             
@@ -52,11 +56,21 @@ def main(personagem: hunter_class):
             [7]Descansar
             [8]Enfrentar Chefe
             [9]Encerrar jogo""")
+
             r = int(input())
 
             match r:
+                case 1:
+                    explore(personagem, local)
+
                 case 2: 
                     show_atributes(personagem)
+
+                case 3:
+                    show_inventory(personagem)
+
+                case 5:
+                    shop(personagem)
 
 
     
@@ -65,4 +79,5 @@ def main(personagem: hunter_class):
 
 intro()
 personagem = criar_personagem()
-main(personagem)
+local = local(rua_abandonada)
+main(personagem, local)
