@@ -41,7 +41,7 @@ def criar_personagem():
     os.system("cls")
     return hunter_obj
 
-def main(personagem: hunter, local: local):
+def main(personagem: hunter, lugar: local):
         
         
         while True:
@@ -61,7 +61,7 @@ def main(personagem: hunter, local: local):
 
             match r:
                 case 1:
-                    explore(personagem, local)
+                    explore(personagem, lugar)
 
                 case 2: 
                     show_atributes(personagem)
@@ -70,7 +70,7 @@ def main(personagem: hunter, local: local):
                     show_inventory(personagem)
 
                 case 5:
-                    shop(personagem)
+                    shop()
 
 
     
@@ -79,5 +79,5 @@ def main(personagem: hunter, local: local):
 
 intro()
 personagem = criar_personagem()
-local = local(rua_abandonada)
-main(personagem, local)
+lugar = local(rua_abandonada)
+main(personagem, lugar)

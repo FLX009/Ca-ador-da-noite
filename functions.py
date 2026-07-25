@@ -1,11 +1,11 @@
 from classes.hunter_class import hunter
 from classes.local_class import local
 from classes.enemie_class import enemie
-from data import items_data, enemies_data
+from data import items_data
 import os
 import random
 
-def explore(personagem: hunter, local: local):
+def explore(personagem: hunter, lugar: local):
     os.system("cls")
     
     r = random.randint(0, 5)
@@ -13,8 +13,8 @@ def explore(personagem: hunter, local: local):
     match r:
         #inimigo
         case 0:
-            inimigos_possiveis = len(local.inimigos)-1
-            inimigo_escolhido = local.inimigos[random.randint(0, inimigos_possiveis)]
+            inimigos_possiveis = len(lugar.inimigos)-1
+            inimigo_escolhido = lugar.inimigos[random.randint(0, inimigos_possiveis)]
             inimigo = enemie(inimigo_escolhido)
 
             fight(personagem, inimigo)
@@ -41,7 +41,7 @@ def show_inventory(personagem: hunter):
     print(personagem.inventario)
     print(f"Moedas: {personagem.qtd_moedas}")
 
-def shop(personagem):
+def shop():
     print(items_data.pocao)
 
 def fight(personagem: hunter, inimigo: enemie):
