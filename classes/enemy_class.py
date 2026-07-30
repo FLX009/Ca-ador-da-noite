@@ -4,7 +4,8 @@ class Enemy:
     def __init__(self, info):
         self.nome = info["nome"]
         self.dano = info["dano"]
-        self.hp = info["HP"]
+        self.max_hp = info["max HP"]
+        self.hp = self.max_hp
         self.moedas = info["moedas"]
 
     def atacar(self):

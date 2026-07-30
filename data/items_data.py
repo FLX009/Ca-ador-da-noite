@@ -1,6 +1,12 @@
+def curar(personagem, quantidade):
+    personagem.hp += quantidade
+    if personagem.hp >= personagem.atributos["max HP"]:
+        personagem.hp = personagem.atributos["max HP"]
+
 pocao = {
     "nome": "Poção",
-    "descrição": "Cura HP",
-    #"efeito": (personagem.hp += 5)
-    "preço": 10
+    "descricao": "Cura 8 HP",
+    "efeito": curar,
+    "qtd_efeito": 8,
+    "preco": 10
 }

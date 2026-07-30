@@ -1,1 +1,1 @@
-from .utils import limpar, esperar, pedir_inteiro
+from .utils import limpar, esperar, pedir_inteiro, print_item, add_item

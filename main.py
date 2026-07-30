@@ -1,11 +1,11 @@
 from utils import limpar, esperar, pedir_inteiro
-from assets.text import intro_text, classes_text, menu_text, fight_options_text
-from assets.ascii import menu_ascii, criar_personagem_ascii, titulo_ascii, fim_de_jogo_ascii
+from assets.text import intro_text, classes_text, menu_text
+from assets.ascii import menu_ascii, criar_personagem_ascii, titulo_ascii, fim_de_jogo_ascii, derrota_ascii
 from classes.hunter_class import Hunter
 from classes.local_class import Local
-from data.classes_data import origens
+from data.classes_data import origens   
 from data.local_data import rua_abandonada
-from functions import show_atributes, explore, show_inventory, shop
+from game_functions import show_atributes, explore, show_inventory, shop, use_item
 
 def intro():
     limpar()
@@ -32,6 +32,14 @@ def criar_personagem():
 
 def main(personagem: Hunter, lugar: Local):
         while True:
+            if personagem.hp <= 0:
+                limpar()
+                print(derrota_ascii)
+                print("Você morreu")
+                esperar()
+                limpar()
+                break
+
             print(menu_ascii)
             print(menu_text)
 
@@ -39,16 +47,24 @@ def main(personagem: Hunter, lugar: Local):
 
             match r:
                 case 1:
+                    limpar()
                     explore(personagem, lugar)
 
                 case 2: 
+                    limpar()
                     show_atributes(personagem)
 
                 case 3:
+                    limpar()
                     show_inventory(personagem)
 
+                case 4:
+                    limpar()
+                    use_item(personagem)
+
                 case 5:
-                    shop()
+                    limpar()
+                    shop(personagem)
 
                 case 9:
                     limpar()

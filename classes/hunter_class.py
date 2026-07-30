@@ -6,6 +6,7 @@ class Hunter:
     def __init__(self, nome, idade, resposta):
         self.nome = nome
         self.idade = idade
+        self.hp = 0
         self.arma = None
         self.origem = None
         self.qtd_moedas = 0
@@ -18,6 +19,7 @@ class Hunter:
         self.origem = classe_escolhida["origem"]
         self.qtd_moedas = classe_escolhida["qtd_moedas"]
         self.atributos = classe_escolhida["atributos"].copy()
+        self.hp = self.atributos["max HP"]
 
     def atacar(self):
         dano_final = random.randint(*self.arma.dano)
