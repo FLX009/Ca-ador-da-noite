@@ -1,5 +1,5 @@
 from utils import limpar, esperar, pedir_inteiro
-from assets.ascii import vitoria_ascii, derrota_ascii, fight_ascii, escapou_ascii
+from assets.ascii import vitoria_ascii, fight_ascii, escapou_ascii
 from assets.text import fight_options_text
 import random
 
@@ -63,14 +63,16 @@ def fight(personagem: object, inimigo: object):
                 limpar()
 
             case 3:             #item
-                pass
+                limpar()
+                personagem.use_item(em_luta = True)
 
             case 4:             #escapar
                 chance = random.randint(1, 10)
-                if chance == 1:
+                if chance in range(1, 3):
                     limpar()
                     print(escapou_ascii)
                     esperar()
+                    limpar()
                     break
                 limpar()
                 print("escapar falhou")

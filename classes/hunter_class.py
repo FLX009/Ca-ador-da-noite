@@ -1,5 +1,6 @@
 from data import classes_data
 from classes.weapon_class import Weapon
+from utils import esperar
 import random
 
 class Hunter:
@@ -24,3 +25,30 @@ class Hunter:
     def atacar(self):
         dano_final = random.randint(*self.arma.dano)
         return dano_final
+
+    def use_item(self, em_luta = False):
+        itens_inventario = set()
+        for i in self.inventario:
+            print(f"{i.nome} x{i.quantidade}")
+            itens_inventario.add(i.nome)
+
+        resposta = input("Escreva o nome do item para usar: ")
+
+        if resposta in itens_inventario:
+            for i in self.inventario:
+                if i.nome == resposta:
+                    i.efeito(self, i.qtd_efeito)
+                    if i.quantidade == 1:
+                        self.inventario.remove(i)
+                    else:
+                        i.quantidade -= 1
+                    print("Item usado.")
+                    usado = True
+                    esperar()
+                    break
+        
+        else:
+            print("Item não encontrado")
+            esperar()
+            if em_luta is True:
+                self.use_item(em_luta = True)

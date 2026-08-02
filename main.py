@@ -5,7 +5,7 @@ from classes.hunter_class import Hunter
 from classes.local_class import Local
 from data.classes_data import origens   
 from data.local_data import rua_abandonada
-from game_functions import show_atributes, explore, show_inventory, shop, use_item
+from game_functions import show_atributes, explore, show_inventory, shop
 
 def intro():
     limpar()
@@ -18,7 +18,7 @@ def criar_personagem():
     print(criar_personagem_ascii)
   
     nome = input("Nome: ")
-    idade = pedir_inteiro("Idade: ", range(1, 101))   
+    idade = pedir_inteiro("Idade: ", range(1, 1000))   
     print(classes_text)
     resposta = pedir_inteiro(validador=origens)
     
@@ -60,7 +60,7 @@ def main(personagem: Hunter, lugar: Local):
 
                 case 4:
                     limpar()
-                    use_item(personagem)
+                    personagem.use_item()
 
                 case 5:
                     limpar()

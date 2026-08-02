@@ -1,7 +1,6 @@
 from classes.hunter_class import Hunter
 from classes.local_class import Local
 from classes.enemy_class import Enemy
-from classes.item_class import Item
 from utils import print_item, add_item, esperar
 from combat import fight
 from data import items_data
@@ -37,6 +36,7 @@ def explore(personagem: Hunter, lugar: Local):
             personagem.hp -= 2
             print("Você caiu em uma armadilha")
             print("Tomou 2 de dano")
+            print(f"HP: {personagem.hp}/{personagem.atributos['max HP']}")
             esperar()
 
         #achar nada
@@ -52,29 +52,6 @@ def show_inventory(personagem: Hunter):
         print(f"{i.nome} x{i.quantidade}")
 
     print(f"Moedas: {personagem.qtd_moedas}")
-
-def use_item(personagem):
-    itens_inventario = set()
-    for i in personagem.inventario:
-        print(f"{i.nome} x{i.quantidade}")
-        itens_inventario.add(i.nome)
-
-    resposta = input("Escreva o nome do item para usar: ")
-
-    if resposta in itens_inventario:
-        for i in personagem.inventario:
-            if i.nome == resposta:
-                i.efeito(personagem, i.qtd_efeito)
-                if i.quantidade == 1:
-                    personagem.inventario.remove(i)
-                else:
-                    i.quantidade -= 1
-                print("Item usado.")
-                esperar()
-                break
-    else:
-        print("Item não encontrado")
-        esperar()
 
 def shop(personagem):
     print_item(items_data.pocao)
